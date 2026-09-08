@@ -1,0 +1,563 @@
+<!-- // Baseado no estilo do Google Slides -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide Creator</title>
+
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #slide-selected {
+            background-color: rgba(104, 165, 250, 0.529);
+        }
+
+        #slide-selected .slide-number {
+            background-color: rgba(92, 158, 251, 0.529);
+            color: blue;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .left {
+            text-align: left;
+        }
+
+        .right {
+            text-align: right;
+        }
+
+        .justify {
+            text-align: justify;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- =====================================================
+             TOP BAR
+        ====================================================== -->
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button class="app-menu-button" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+
+                <div class="app-logo">
+                    <div class="logo-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <span class="logo-text">Slide Creator</span>
+                </div>
+
+                <div class="presentation-title">
+                    <input type="text" value="Minha apresentação" aria-label="Nome da apresentação">
+                </div>
+
+            </div>
+
+
+            <div class="topbar-right">
+
+                <button class="icon-button" title="Desfazer">
+                    ↶
+                </button>
+
+                <button class="icon-button" title="Refazer">
+                    ↷
+                </button>
+
+                <div class="topbar-divider"></div>
+
+                <button class="icon-button" title="Salvar" id="salvar">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M5 4h11l3 3v13H5V4z" />
+                        <path d="M8 4v6h8V4" />
+                        <path d="M8 20v-6h8v6" />
+                    </svg>
+                </button>
+
+                <button class="present-button">
+                    <span class="play-icon">▶</span>
+                    Apresentar
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- =====================================================
+             MENU BAR
+        ====================================================== -->
+
+        <nav class="menubar">
+
+            <button>Arquivo</button>
+            <button>Editar</button>
+            <button>Exibir</button>
+            <button>Inserir</button>
+            <button>Slide</button>
+            <button>Organizar</button>
+            <button>Ferramentas</button>
+            <button>Ajuda</button>
+
+        </nav>
+
+
+        <!-- =====================================================
+             TOOLBAR
+        ====================================================== -->
+
+        <div class="toolbar">
+
+            <div class="toolbar-group">
+
+                <button class="tool-button active" title="Selecionar">
+                    <span class="cursor-icon">↖</span>
+                </button>
+
+                <button class="tool-button" title="Caixa de texto">
+                    <span class="text-icon">T</span>
+                </button>
+
+                <button class="tool-button" title="Imagem">
+                    <span class="image-icon">▧</span>
+                </button>
+
+                <button class="tool-button" title="Forma">
+                    <span class="shape-icon"></span>
+                </button>
+
+                <button class="tool-button" title="Linha">
+                    <span class="line-icon"></span>
+                </button>
+
+            </div>
+
+
+            <div class="toolbar-divider"></div>
+
+
+            <div class="toolbar-group">
+
+                <div class="toolbar-select font-select">
+                    <span>Arial</span>
+                    <span>⌄</span>
+                </div>
+
+                <div class="toolbar-select size-select">
+                    <span>32</span>
+                    <span>⌄</span>
+                </div>
+
+                <button class="tool-button text-bold" data-function="text-decorantion" data-value="bold">
+                    B
+                </button>
+
+                <button class="tool-button text-italic" data-function="text-decorantion" data-value="italic">
+                    I
+                </button>
+
+                <button class="tool-button text-underline" data-function="text-decorantion" data-value="underline">
+                    U
+                </button>
+
+            </div>
+
+
+            <div class="toolbar-divider"></div>
+
+
+            <div class="toolbar-group">
+
+                <button class="tool-button">
+                    <span class="color-indicator"></span>
+                </button>
+
+                <button class="tool-button">
+                    <span class="border-icon"></span>
+                </button>
+
+                <button class="tool-button">
+                    ≡
+                </button>
+
+                <button class="tool-button">
+                    ☰
+                </button>
+
+                <button class="tool-button">
+                    ≡
+                </button>
+
+            </div>
+
+
+            <div class="toolbar-spacer"></div>
+
+
+            <div class="zoom-control">
+
+                <button>−</button>
+
+                <span>100%</span>
+
+                <button>+</button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
+             MAIN WORKSPACE
+        ====================================================== -->
+
+        <main class="workspace">
+
+
+            <!-- =================================================
+                 LEFT SIDEBAR
+            ================================================== -->
+
+            <aside class="sidebar">
+
+                <div class="sidebar-header">
+
+                    <button class="new-slide-button">
+                        <span>+</span>
+                        Novo slide
+                    </button>
+
+                    <button class="dropdown-button">
+                        ⌄
+                    </button>
+
+                </div>
+
+
+                <div class="slide-list">
+                    <div class="slide-thumbnail-wrapper" id="slide-selected">
+
+                        <div class="slide-number">
+                            1
+                        </div>
+
+                        <div class="slide-thumbnail">
+
+                            <div class="thumbnail-title">
+                                Minha apresentação
+                            </div>
+
+                            <div class="thumbnail-subtitle">
+                                Um novo começo
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="sidebar-footer">
+
+                    <button title="Adicionar slide">
+                        +
+                    </button>
+
+                    <button title="Duplicar slide">
+                        ▣
+                    </button>
+
+                    <button title="Excluir slide">
+                        🗑
+                    </button>
+
+                </div>
+
+            </aside>
+
+
+
+            <!-- =================================================
+                 CANVAS AREA
+            ================================================== -->
+
+            <section class="canvas-area">
+
+                <div class="canvas-wrapper">
+
+                    <div id="slide-canvas">
+                        <div class="slide-box" id="selected-element">
+                            <div class="slide-content" contenteditable="true">
+                                Minha apresentação
+                            </div>
+                        </div>
+
+                        <div class="slide-box">
+                            <div class="slide-content">
+                                Minha apresentação
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 RIGHT PROPERTIES PANEL
+            ================================================== -->
+
+            <aside class="properties-panel">
+
+                <div class="properties-header">
+
+                    <span>Propriedades</span>
+
+                    <button>
+                        ×
+                    </button>
+
+                </div>
+
+                <section class="property-section">
+
+                    <h3>
+                        Texto
+                    </h3>
+
+
+                    <div class="property-row">
+
+                        <span>Fonte</span>
+
+                        <div class="property-select">
+                            Arial
+                            <span>⌄</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="property-row">
+
+                        <span>Tamanho</span>
+
+                        <div class="property-select small">
+                            32
+                            <span>⌄</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="format-buttons">
+
+                        <button class="format-active">
+                            B
+                        </button>
+
+                        <button>
+                            I
+                        </button>
+
+                        <button>
+                            U
+                        </button>
+
+                        <button>
+                            S
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- COLOR -->
+
+                <section class="property-section">
+
+                    <h3>
+                        Cor
+                    </h3>
+
+                    <div class="color-row">
+
+                        <button class="color-box black"></button>
+                        <button class="color-box dark-gray"></button>
+                        <button class="color-box gray"></button>
+                        <button class="color-box light-gray"></button>
+                        <button class="color-box white"></button>
+
+                    </div>
+
+                    <div class="custom-color">
+
+                        <span>Personalizada</span>
+
+                        <button>
+                            +
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ALIGNMENT -->
+
+                <section class="property-section">
+
+                    <h3>
+                        Alinhamento
+                    </h3>
+
+                    <div class="alignment-buttons">
+
+                        <button class="btn-align format-active" id="btn-align-1" data-align="justify">
+                            <img src="texto-justificado.svg" alt="" width="20" height="20">
+                        </button>
+                        <button class="btn-align" id="btn-align-2" data-align="right">
+                            <img src="texto-direita.svg" alt="" width="20" height="20">
+                        </button>
+                        <button class="btn-align" id="btn-align-3" data-align="left">
+                            <img src="texto-esquerda.svg" alt="" srcset="" width="20" height="20">
+                        </button>
+                        <button class="btn-align" id="btn-align-4" data-align="center">
+                            <img src="texto-centralizado.svg" alt="" srcset="" width="20" height="20">
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- OPACITY -->
+
+                <section class="property-section">
+
+                    <div class="property-row">
+
+                        <span>Opacidade</span>
+
+                        <span>100%</span>
+
+                    </div>
+
+                    <input class="range-input" type="range" min="0" max="100" value="100">
+
+                </section>
+
+            </aside>
+
+        </main>
+
+
+
+        <!-- =====================================================
+             BOTTOM BAR
+        ====================================================== -->
+
+        <footer class="bottom-bar">
+
+            <div class="bottom-left">
+
+                <span>
+                    Slide 1 de 1
+                </span>
+
+                <span class="bottom-divider"></span>
+
+                <button>
+                    Notas do apresentador
+                </button>
+
+            </div>
+
+            <div class="bottom-right">
+
+                <button>
+                    −
+                </button>
+
+                <span>
+                    100%
+                </span>
+
+                <button>
+                    +
+                </button>
+
+                <button>
+                    ⛶
+                </button>
+
+            </div>
+
+        </footer>
+
+    </div>
+    <!-- // API Moveable -->
+    <script src="https://daybrush.com/moveable/release/latest/dist/moveable.min.js"></script>
+    <script>
+        const moveable = new Moveable(document.getElementById("slide-canvas"), {
+            target: document.getElementById("selected-element"), // Elemento alvo
+            draggable: true,  // Permite arrastar
+            resizable: true,  // Permite redimensionar pelas bordas/cantos
+            rotatable: true,  // Permite rotacionar pelo pino superior
+            pinchable: true,  // Permite gestos em telas de toque
+            keepRatio: false, // Se true, mantém a proporção ao redimensionar
+        });
+
+        // Gatilhos para atualizar a posição visual em tempo real
+        moveable.on("drag", e => {
+            e.target.style.transform = e.transform;
+        });
+
+        moveable.on("resize", e => {
+            e.target.style.width = `${e.width}px`;
+            e.target.style.height = `${e.height}px`;
+            e.target.style.transform = e.transform;
+        });
+
+        moveable.on("rotate", e => {
+            e.target.style.transform = e.transform;
+        });
+        function atualizar_moveable() {
+            moveable.target = document.getElementById("selected-element");
+        }
+        function desabilitar_moveable() {
+            moveable.target = null;
+        }
+    </script>
+
+    <!-- API Rangy, usada para formatar texto -->
+    <script src="https://cdn.jsdelivr.net/npm/rangy@1.3.2/lib/rangy-core.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/rangy@1.3.2/lib/rangy-classapplier.min.js"></script>
+
+    <script src="mudar_slide_selecionado.js"></script>
+    <script src="estilizar_texto_slide_boxes.js"></script>
+    <script src="mudar_organizacao_texto_slide_box.js"></script>
+    <script src="salvar_slides.js"></script>
+    <script src="criar_miniatura_slides.js"></script>
+</body>
+
+</html>
