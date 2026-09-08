@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slide Creator</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style/style.css">
     <style>
         #slide-selected {
             background-color: rgba(104, 165, 250, 0.529);
@@ -433,16 +433,16 @@
                     <div class="alignment-buttons">
 
                         <button class="btn-align format-active" id="btn-align-1" data-align="justify">
-                            <img src="texto-justificado.svg" alt="" width="20" height="20">
+                            <img src="imagens/aligns/texto-justificado.svg" alt="" width="20" height="20">
                         </button>
                         <button class="btn-align" id="btn-align-2" data-align="right">
-                            <img src="texto-direita.svg" alt="" width="20" height="20">
+                            <img src="imagens/aligns/texto-direita.svg" alt="" width="20" height="20">
                         </button>
                         <button class="btn-align" id="btn-align-3" data-align="left">
-                            <img src="texto-esquerda.svg" alt="" srcset="" width="20" height="20">
+                            <img src="imagens/aligns/texto-esquerda.svg" alt="" srcset="" width="20" height="20">
                         </button>
                         <button class="btn-align" id="btn-align-4" data-align="center">
-                            <img src="texto-centralizado.svg" alt="" srcset="" width="20" height="20">
+                            <img src="imagens/aligns/texto-centralizado.svg" alt="" srcset="" width="20" height="20">
                         </button>
 
                     </div>
@@ -553,11 +553,12 @@
     <script src="https://cdn.jsdelivr.net/npm/rangy@1.3.2/lib/rangy-core.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/rangy@1.3.2/lib/rangy-classapplier.min.js"></script>
 
-    <script src="mudar_slide_selecionado.js"></script>
-    <script src="estilizar_texto_slide_boxes.js"></script>
-    <script src="mudar_organizacao_texto_slide_box.js"></script>
-    <script src="salvar_slides.js"></script>
-    <script src="criar_miniatura_slides.js"></script>
+    <script src="js/change_selected_slide.js"></script>
+    <script src="js/styling_text_boxes_on_slides.js"></script>
+    <script src="js/change_slide_text_box_align.js"></script>
+    <script src="js/styling_text_boxes_on_slides.js"></script>
+    <script src="js/create_slide_miniature.js"></script>
+    <script src="js/tool_btns.js"></script>
 </body>
 
 </html>
