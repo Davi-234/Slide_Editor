@@ -8,6 +8,12 @@
     <title>Slide Creator</title>
 
     <link rel="stylesheet" href="style/style.css">
+
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!--  -->
+
     <style>
         #slide-selected {
             background-color: rgba(104, 165, 250, 0.529);
@@ -155,14 +161,61 @@
 
             <div class="toolbar-group">
 
-                <div class="toolbar-select font-select">
-                    <span>Arial</span>
-                    <span>⌄</span>
+                <div class="toolbar-select" id="font-select">
+                    <div class="dropdown">
+
+                        <button class="btn btn-light dropdown-toggle" type="button" id="fontFamily"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Arial
+                        </button>
+
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <button class="dropdown-item">Arial</button>
+                            </li>
+
+                        </ul>
+
+                    </div>
                 </div>
 
-                <div class="toolbar-select size-select">
-                    <span>32</span>
-                    <span>⌄</span>
+                <div id="size-select">
+                    <div class="dropdown">
+
+                        <button class="btn btn-light dropdown-toggle" type="button" id="sizeButton"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            h1
+                        </button>
+
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <button class="dropdown-item">h1</button>
+                            </li>
+
+                            <li>
+                                <button class="dropdown-item">h2</button>
+                            </li>
+
+                            <li>
+                                <button class="dropdown-item">h3</button>
+                            </li>
+
+                            <li>
+                                <button class="dropdown-item">h4</button>
+                            </li>
+
+                            <li>
+                                <button class="dropdown-item">h5</button>
+                            </li>
+
+                            <li>
+                                <button class="dropdown-item">h6</button>
+                            </li>
+                        </ul>
+
+                    </div>
                 </div>
 
                 <button class="tool-button text-bold" data-function="text-decorantion" data-value="bold">
@@ -367,27 +420,6 @@
 
                     </div>
 
-
-                    <div class="format-buttons">
-
-                        <button class="format-active">
-                            B
-                        </button>
-
-                        <button>
-                            I
-                        </button>
-
-                        <button>
-                            U
-                        </button>
-
-                        <button>
-                            S
-                        </button>
-
-                    </div>
-
                 </section>
 
 
@@ -554,11 +586,34 @@
     <script src="https://cdn.jsdelivr.net/npm/rangy@1.3.2/lib/rangy-classapplier.min.js"></script>
 
     <script src="js/change_selected_slide.js"></script>
-    <script src="js/styling_text_boxes_on_slides.js"></script>
+    <script src="js/save_slides.js"></script>
     <script src="js/change_slide_text_box_align.js"></script>
     <script src="js/styling_text_boxes_on_slides.js"></script>
     <script src="js/create_slide_miniature.js"></script>
     <script src="js/tool_btns.js"></script>
+    <script src="js/increase_text_boxes.js"></script>
+    <script>
+        // Cria as opções de font-family no 'dropdown'
+        const fontes = [
+            "Calibri",
+            "Times New Roman",
+            "Verdana",
+            "Georgia",
+            "Trebuchet MS",
+            "Tahoma",
+            "Courier New",
+            "Roboto",
+            "Montserrat",
+            "Poppins",
+            "Open Sans",
+            "Inter"
+        ];
+
+        fontes.forEach(fonte => {
+            document.querySelectorAll("#font-select .dropdown-menu")[0].innerHTML += `<li><button class="dropdown-item">${fonte}</button></li>`
+        });
+    </script>
+    <script src="js/change_fontFamily_selector.js"></script>
 </body>
 
 </html>
